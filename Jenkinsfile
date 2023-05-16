@@ -17,7 +17,7 @@ pipeline {
         }
         stage('Deploy Docker image to server') {
             steps {
-                sshagent(['ssh-credentials']) {
+                sshagent(credentials: ['ssh-credentials']) {
                     sh 'ssh root@195.155.131.103 "docker stop flask-app || true"'
                     sh 'ssh root@195.155.131.103 "docker rm flask-app || true"'
                     sh 'ssh root@195.155.131.103 "docker run -d --name flask-app -p 5000:5000 rumphelstilskin/flask-app:latest"'
