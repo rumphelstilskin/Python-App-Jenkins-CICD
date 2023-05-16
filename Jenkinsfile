@@ -8,10 +8,10 @@ pipeline {
         }
         stage('Push Docker image to Docker Hub') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'rumphelstilskin', passwordVariable: 'dckr_pat_Ep1Mll-D0nj_s3WioNaorHrLgX0')]) {
-                    sh 'docker login -u $rumphelstilskin -p $dckr_pat_Ep1Mll-D0nj_s3WioNaorHrLgX0'
+                withCredentials([usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                    sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
                     sh 'docker tag flask-app rumphelstilskin/flask-app:latest'
-                    sh 'docker push flask-app rumphelstilskin/flask-app:latest'
+                    sh 'docker push rumphelstilskin/flask-app:latest'
                 }
             }
         }
