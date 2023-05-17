@@ -18,9 +18,9 @@ pipeline {
         stage('Deploy Docker image to server') {
             steps {
                 sshagent(credentials: ['ssh-credentials']) {
-                    sh 'ssh root@195.155.131.103 "docker rm -f flask-app || true"'
-                    sh 'ssh root@195.155.131.103 "docker pull rumphelstilskin/flask-app:latest || true"'
-                    sh 'ssh root@195.155.131.103 "docker run -d --name flask-app -p 5000:5000 rumphelstilskin/flask-app:latest"'
+                    sh 'ssh root@195.155.131.103 -o StrictHostKeyChecking=no "docker rm -f flask-app || true"'
+                    sh 'ssh root@195.155.131.103 -o StrictHostKeyChecking=no "docker pull rumphelstilskin/flask-app:latest || true"'
+                    sh 'ssh root@195.155.131.103 -o StrictHostKeyChecking=no "docker run -d --name flask-app -p 5000:5000 rumphelstilskin/flask-app:latest"'
                 }
             }
         }
