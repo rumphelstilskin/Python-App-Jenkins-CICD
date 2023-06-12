@@ -20,7 +20,7 @@ pipeline {
                 sshagent(credentials: ['ssh-credentials']) {
                     sh 'ssh root@195.155.131.103 -o StrictHostKeyChecking=no "docker rm -f flask-app || true"'
                     sh 'ssh root@195.155.131.103 -o StrictHostKeyChecking=no "docker pull rumphelstilskin/flask-app:latest || true"'
-                    sh 'ssh root@195.155.131.103 -o StrictHostKeyChecking=no "docker run -d --name flask-app -p 5000:5000 rumphelstilskin/flask-app:latest"'
+                    sh 'ssh root@195.155.131.103 -o StrictHostKeyChecking=no "docker run -d --name flask-app -p 5001:5000 rumphelstilskin/flask-app:latest"'
                 }
             }
         }
